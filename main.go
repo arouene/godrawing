@@ -17,16 +17,16 @@ func main() {
 
 func drawHexagone(img *image.RGBA, x, y int, l float64, c color.Color) {
 	const angle = (1.0 / 3.0) * math.Pi
-	x0, y0 := nextPoint(x, y, l, 0)
+	x0, y0 := nextHexagonePoint(x, y, l, 0)
 	x1, y1 := x0, y0
 	for i := angle; i < (2*math.Pi)+1; i += angle {
-		x1, y1 = nextPoint(x, y, l, i)
+		x1, y1 = nextHexagonePoint(x, y, l, i)
 		drawLine(img, x0, y0, x1, y1, c)
 		x0, y0 = x1, y1
 	}
 }
 
-func nextPoint(x, y int, l, t float64) (x0 int, y0 int) {
+func nextHexagonePoint(x, y int, l, t float64) (x0 int, y0 int) {
 	x0 = x + int(l*math.Cos(t))
 	y0 = y + int(l*math.Sin(t))
 	return
